@@ -28,18 +28,18 @@ public class CounterTextView extends LinearLayout {
     private int textColor;
     private float textSize;
 
-    private String curText;
-    private String barText;
-    private String maxText;
+    private String frontText;
+    private String midText;
+    private String backText;
 
-    private TextView tvCur;
-    private TextView tvBar;
-    private TextView tvMax;
+    private TextView vFront;
+    private TextView vMid;
+    private TextView vBack;
 
     public CounterTextView(Context context) {
         super(context);
         try{
-            initLayout();
+            initData();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,39 +57,38 @@ public class CounterTextView extends LinearLayout {
             textColor   = typedArray.getColor(R.styleable.CounterView_textColor, ContextCompat.getColor(getContext(), R.color.black));
             textSize    = typedArray.getDimensionPixelSize(R.styleable.CounterView_textSize, 15);
 
-            curText     = typedArray.getString(R.styleable.CounterView_curText);
-            barText     = typedArray.getString(R.styleable.CounterView_barText);
-            maxText     = typedArray.getString(R.styleable.CounterView_maxText);
+            frontText   = typedArray.getString(R.styleable.CounterView_frontText);
+            midText     = typedArray.getString(R.styleable.CounterView_midText);
+            backText    = typedArray.getString(R.styleable.CounterView_backText);
         }finally {
-            if(barText == null){
-                barText = "/";
-            }
-
             typedArray.recycle();
         }
 
         try{
-            initLayout();
+            initData();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+    private void initData(){
+        if(midText == null){
+            midText = "/";
+        }
 
-    private void initLayout() throws Exception{
+        initLayout();
+    }
+
+    private void initLayout(){
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_counter, this);
 
-        tvCur = findViewById(R.id.cur);
-        tvBar = findViewById(R.id.bar);
-        tvMax = findViewById(R.id.max);
+        vFront = findViewById(R.id.cur);
+        vMid = findViewById(R.id.bar);
+        vBack = findViewById(R.id.max);
 
-        setupLayout();
-    }
-
-    private void setupLayout(){
         setTextSize(textSize);
         setTextColor(textColor);
-        setText(curText, barText, maxText);
+        setText(frontText, midText, backText);
         setBarEnable(barEnable);
 
         setBgShape(bgShape);
@@ -97,28 +96,36 @@ public class CounterTextView extends LinearLayout {
         setBgColorAlpha(bgColorAlpha);
     }
 
-    public CounterTextView setText(String current, String bar, String max){
-        tvCur.setText(current);
-        tvBar.setText(bar);
-        tvMax.setText(max);
-        this.curText    = current;
-        this.barText    = bar;
-        this.maxText    = max;
+    public void refreshView(){
+        try{
+            initData();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public CounterTextView setText(String front, String mid, String back){
+        vFront.setText(front);
+        vMid.setText(mid);
+        vBack.setText(back);
+        this.frontText  = front;
+        this.midText    = mid;
+        this.backText   = back;
         return this;
     }
 
     public CounterTextView setTextSize(float size){
-        tvCur.setTextSize(size);
-        tvBar.setTextSize(size);
-        tvMax.setTextSize(size);
+        vFront.setTextSize(size);
+        vMid.setTextSize(size);
+        vBack.setTextSize(size);
         this.textSize = size;
         return this;
     }
 
     public CounterTextView setTextColor(int color){
-        tvCur.setTextColor(color);
-        tvBar.setTextColor(color);
-        tvMax.setTextColor(color);
+        vFront.setTextColor(color);
+        vMid.setTextColor(color);
+        vBack.setTextColor(color);
         this.textColor = color;
         return this;
     }
@@ -158,26 +165,26 @@ public class CounterTextView extends LinearLayout {
     }
 
     public CounterTextView setBarEnable(boolean barEnable) {
-        tvBar.setVisibility(barEnable ? VISIBLE : INVISIBLE);
+        vMid.setVisibility(barEnable ? VISIBLE : INVISIBLE);
         this.barEnable = barEnable;
         return this;
     }
 
-    public CounterTextView setCurText(String curText) {
-        tvCur.setText(curText);
-        this.curText = curText;
+    public CounterTextView setfrontText(String frontText) {
+        vFront.setText(frontText);
+        this.frontText = frontText;
         return this;
     }
 
-    public CounterTextView setBarText(String barText) {
-        tvBar.setText(barText);
-        this.barText = barText;
+    public CounterTextView setmidText(String midText) {
+        vMid.setText(midText);
+        this.midText = midText;
         return this;
     }
 
-    public CounterTextView setMaxText(String maxText) {
-        tvMax.setText(maxText);
-        this.maxText = maxText;
+    public CounterTextView setbackText(String backText) {
+        vBack.setText(backText);
+        this.backText = backText;
         return this;
     }
 }

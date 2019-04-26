@@ -9,8 +9,8 @@
         <attr name="textColor" format="color"/>
         <attr name="textSize" format="dimension"/>
 
-        <attr name="curText" format="string"/>
-        <attr name="barText" format="string"/>
-        <attr name="maxText" format="string"/>
+        <attr name="frontText" format="string"/>
+        <attr name="midText" format="string"/>
+        <attr name="backText" format="string"/>
     </declare-styleable>
 </resources>
