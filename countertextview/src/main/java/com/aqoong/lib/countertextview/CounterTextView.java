@@ -97,10 +97,6 @@ public class CounterTextView extends LinearLayout {
         setBgColorAlpha(bgColorAlpha);
     }
 
-
-
-
-
     public CounterTextView setText(String current, String bar, String max){
         tvCur.setText(current);
         tvBar.setText(bar);
