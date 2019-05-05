@@ -10,6 +10,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,7 +56,7 @@ public class CounterTextView extends LinearLayout {
             barEnable   = typedArray.getBoolean(R.styleable.CounterView_barEnable, true);
 
             textColor   = typedArray.getColor(R.styleable.CounterView_textColor, ContextCompat.getColor(getContext(), R.color.black));
-            textSize    = typedArray.getDimensionPixelSize(R.styleable.CounterView_textSize, 15);
+            textSize    = typedArray.getDimension(R.styleable.CounterView_textSize, 25);
 
             frontText   = typedArray.getString(R.styleable.CounterView_frontText);
             midText     = typedArray.getString(R.styleable.CounterView_midText);
@@ -115,10 +116,11 @@ public class CounterTextView extends LinearLayout {
     }
 
     public CounterTextView setTextSize(float size){
-        vFront.setTextSize(size);
-        vMid.setTextSize(size);
-        vBack.setTextSize(size);
-        this.textSize = size;
+        this.textSize = size / getResources().getDisplayMetrics().scaledDensity;
+
+        vFront.setTextSize(textSize);
+        vMid.setTextSize(textSize);
+        vBack.setTextSize(textSize);
         return this;
     }
 

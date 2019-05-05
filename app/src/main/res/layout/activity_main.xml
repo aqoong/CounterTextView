@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -11,11 +12,40 @@
         android:id="@+id/counterview"
         app:frontText="2"
         app:backText="10"
+        app:textSize="10dp"
         app:background_color="@android:color/holo_orange_dark"
-        app:background_alpha="0.5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
     </com.aqoong.lib.countertextview.CounterTextView>
 
-</RelativeLayout>
+    <com.aqoong.lib.countertextview.CounterTextView
+        android:id="@+id/counterview1"
+        app:frontText="2"
+        app:backText="10"
+        app:background_color="@android:color/holo_blue_bright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.aqoong.lib.countertextview.CounterTextView>
+
+    <com.aqoong.lib.countertextview.CounterTextView
+        android:id="@+id/counterview2"
+        app:frontText="2"
+        app:backText="10"
+        app:textSize="10sp"
+        app:textColor="@android:color/white"
+        android:gravity="center|top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.aqoong.lib.countertextview.CounterTextView>
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:text="2/10"
+        android:textSize="10sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
