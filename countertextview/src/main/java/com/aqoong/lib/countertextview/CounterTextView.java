@@ -82,6 +82,7 @@ public class CounterTextView extends LinearLayout {
     private void initLayout(){
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_counter, this);
+        setBgShape(bgShape);
 
         vFront = findViewById(R.id.cur);
         vMid = findViewById(R.id.bar);
@@ -92,26 +93,13 @@ public class CounterTextView extends LinearLayout {
         setText(frontText, midText, backText);
         setBarEnable(barEnable);
 
-        setBgShape(bgShape);
-        setBgColor(bgColor);
         setBgColorAlpha(bgColorAlpha);
     }
 
-    public void refreshView(){
-        try{
-            initData();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public CounterTextView setText(String front, String mid, String back){
-        vFront.setText(front);
-        vMid.setText(mid);
-        vBack.setText(back);
-        this.frontText  = front;
-        this.midText    = mid;
-        this.backText   = back;
+        setFrontText(front);
+        setMidText(mid);
+        setBackText(back);
         return this;
     }
 
@@ -172,19 +160,19 @@ public class CounterTextView extends LinearLayout {
         return this;
     }
 
-    public CounterTextView setfrontText(String frontText) {
+    public CounterTextView setFrontText(String frontText) {
         vFront.setText(frontText);
         this.frontText = frontText;
         return this;
     }
 
-    public CounterTextView setmidText(String midText) {
+    public CounterTextView setMidText(String midText) {
         vMid.setText(midText);
         this.midText = midText;
         return this;
     }
 
-    public CounterTextView setbackText(String backText) {
+    public CounterTextView setBackText(String backText) {
         vBack.setText(backText);
         this.backText = backText;
         return this;
